@@ -122,7 +122,7 @@ async def simple_chat(request: Request, user=Depends(get_current_user)):
         {"role": "user", "content": message}
     ]
 
-    result = await route_request(messages=messages, model=model, temperature=0.7, max_tokens=500)
+    result = await route_request(messages=messages, model=model, temperature=0.7, max_tokens=2000)
     msg_id = f"msg_{secrets.token_hex(8)}"
     db.log_chat(user["id"], msg_id, result["model_used"], result.get("tokens", 0), 0)
 
